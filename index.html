@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="planner.css" />
   <link rel="stylesheet" href="assignment-board.css" />
+  <link rel="stylesheet" href="expenses.css" />
   <style>body:not(.is-admin) .row-action{display:none}</style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -27,6 +28,7 @@
         <button class="nav-item" data-view="roster">Team roster</button>
         <button class="nav-item" data-view="colleges">Colleges</button>
         <button class="nav-item" data-view="planner">Route planner</button>
+        <button class="nav-item" data-view="expenses">Individual expenses</button>
       </nav>
       <div class="sidebar-note"><strong>Access</strong><span>Editing is restricted to authenticated @capgemini.com users.</span></div>
     </aside>
@@ -78,6 +80,13 @@
           </aside>
           <section id="routeDetail" class="route-detail"></section>
         </div>
+      </section>
+
+      <section class="view" id="expensesView">
+        <div class="page-head compact"><div><p class="eyebrow">Travel cost tracking</p><h1>Individual expenses</h1><p>Capture hotel, air, train and road costs against each traveller.</p></div><button id="addExpenseBtn" class="button primary">Add expense</button></div>
+        <div class="expense-metrics" id="expenseMetrics"></div>
+        <div class="toolbar"><input id="expenseFrom" type="date" /><input id="expenseTo" type="date" /><select id="expenseMember"><option value="all">All travellers</option></select><select id="expenseType"><option value="all">All expense types</option><option>Hotel</option><option>Air</option><option>Train</option><option>Road</option></select><button id="exportExpensesBtn" class="button secondary">Export expenses</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Date</th><th>Traveller</th><th>Expense</th><th>Trip / college</th><th>Amount</th><th>Notes</th><th></th></tr></thead><tbody id="expenseBody"></tbody></table></div>
       </section>
     </main>
   </div>
