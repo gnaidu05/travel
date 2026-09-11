@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="planner.css" />
   <link rel="stylesheet" href="assignment-board.css" />
   <link rel="stylesheet" href="expenses.css" />
+  <link rel="stylesheet" href="overview.css" />
   <style>body:not(.is-admin) .row-action{display:none}</style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -44,12 +45,12 @@
         <div class="metric-grid">
           <article><span>Team members</span><strong id="metricMembers">0</strong><small id="metricTravellers">0 available to travel</small></article>
           <article><span>Colleges</span><strong id="metricColleges">0</strong><small id="metricScheduled">0 scheduled</small></article>
-          <article><span>Assignments</span><strong id="metricAssignments">0</strong><small>On selected date</small></article>
-          <article><span>Conflicts</span><strong id="metricConflicts">0</strong><small>Requires attention</small></article>
+          <article><span>People deployed</span><strong id="metricAssignments">0</strong><small>On selected date</small></article>
+          <article><span>Schedule conflicts</span><strong id="metricConflicts">0</strong><small>People with multiple duties</small></article>
         </div>
         <div class="content-grid">
-          <article class="panel"><div class="panel-head"><div><h2>Selected-day deployment</h2><p>Who is travelling, assigned or unavailable</p></div></div><div id="dayDeployment" class="deployment-list"></div></article>
-          <article class="panel"><div class="panel-head"><div><h2>Travel readiness</h2><p>Station and airport information completeness</p></div></div><div id="readiness" class="readiness"></div></article>
+          <article class="panel deployment-panel"><div class="panel-head"><div><h2>Travel groups</h2><p>Destination, activity and everyone travelling together</p></div></div><div id="dayDeployment" class="deployment-list"></div></article>
+          <article class="panel readiness-panel"><div class="panel-head"><div><h2>Travel data readiness</h2><p>Airport, railway and distance information</p></div></div><div id="readiness" class="readiness"></div></article>
         </div>
       </section>
 
