@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="overview.css" />
   <link rel="stylesheet" href="assignment-stages.css" />
   <link rel="stylesheet" href="roster-matrix.css" />
-  <style>body:not(.is-admin) .row-action{display:none}</style>
+  <link rel="stylesheet" href="admin-access.css" />
+  <style>body:not(.is-admin) .row-action,body:not(.is-admin) .admin-only{display:none}</style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="config.js"></script>
@@ -21,7 +22,7 @@
 <body>
   <header class="topbar">
     <div class="brand"><span class="brand-mark">CR</span><div><strong>CampusRoute</strong><small>Assessment operations</small></div></div>
-    <div class="top-actions"><span id="syncState" class="sync-state">Local preview</span><input id="excelImport" type="file" accept=".xlsx,.xls" hidden /><button id="importBtn" class="button secondary" hidden>Import Excel</button><button id="signInBtn" class="button secondary">Sign in</button></div>
+    <div class="top-actions"><span id="syncState" class="sync-state">Local preview</span><input id="excelImport" type="file" accept=".xlsx,.xls" hidden /><button id="requestAdminBtn" class="button secondary" hidden>Request admin access</button><button id="importBtn" class="button secondary" hidden>Import Excel</button><button id="signInBtn" class="button secondary">Sign in</button></div>
   </header>
 
   <div class="app-shell">
@@ -32,6 +33,7 @@
         <button class="nav-item" data-view="colleges">Colleges</button>
         <button class="nav-item" data-view="planner">Route planner</button>
         <button class="nav-item" data-view="expenses">Individual expenses</button>
+        <button class="nav-item admin-only" data-view="adminRequests">Admin requests <span id="adminRequestCount" class="request-count">0</span></button>
       </nav>
       <div class="sidebar-note"><strong>Access</strong><span>Editing is restricted to authenticated @capgemini.com users.</span></div>
     </aside>
@@ -96,6 +98,11 @@
         <div class="expense-metrics" id="expenseMetrics"></div>
         <div class="toolbar"><input id="expenseFrom" type="date" /><input id="expenseTo" type="date" /><select id="expenseMember"><option value="all">All travellers</option></select><select id="expenseType"><option value="all">All expense types</option><option>Hotel</option><option>Air</option><option>Train</option><option>Road</option></select><button id="exportExpensesBtn" class="button secondary">Export expenses</button></div>
         <div class="table-wrap"><table><thead><tr><th>Date</th><th>Traveller</th><th>Expense</th><th>Trip / college</th><th>Amount</th><th>Notes</th><th></th></tr></thead><tbody id="expenseBody"></tbody></table></div>
+      </section>
+
+      <section class="view" id="adminRequestsView">
+        <div class="page-head compact"><div><p class="eyebrow">Access control</p><h1>Administrator requests</h1><p>Review requests from signed-in Capgemini users.</p></div></div>
+        <div class="table-wrap"><table class="admin-request-table"><thead><tr><th>User</th><th>Requested</th><th>Status</th><th>Decision</th></tr></thead><tbody id="adminRequestBody"></tbody></table></div>
       </section>
     </main>
   </div>
