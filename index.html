@@ -59,8 +59,13 @@
       <section class="view" id="rosterView">
         <div class="page-head compact"><div><p class="eyebrow">People and availability</p><h1>Team roster</h1></div><button id="addMemberBtn" class="button primary">Add team member</button></div>
         <div class="toolbar"><input id="rosterSearch" type="search" placeholder="Search name, base or college" /><label class="toolbar-date">From<input id="rosterFrom" type="date" /></label><label class="toolbar-date">To<input id="rosterTo" type="date" /></label><select id="travelFilter"><option value="all">All travel preferences</option><option value="Yes">Can travel</option><option value="No">Cannot travel</option></select><button id="extendRosterBtn" class="button secondary">Extend 14 days</button><button id="exportRosterBtn" class="button secondary">Export roster</button></div>
+        <div class="roster-view-switch" aria-label="Roster display">
+          <button id="teamRosterModeBtn" class="active" onclick="setRosterMode('team')">Team-wise</button>
+          <button id="collegeRosterModeBtn" onclick="setRosterMode('college')">College-wise</button>
+        </div>
         <div class="roster-legend"><span class="legend-assessment">Assessment</span><span class="legend-interview">Interview</span><span class="legend-travel">Travel / Return</span><span class="legend-unavailable">Unavailable</span></div>
-        <div class="table-wrap roster-matrix-wrap"><table id="rosterMatrix" class="roster-matrix"><thead id="rosterHead"></thead><tbody id="rosterBody"></tbody></table></div>
+        <div id="teamRosterPanel" class="table-wrap roster-matrix-wrap"><table id="rosterMatrix" class="roster-matrix"><thead id="rosterHead"></thead><tbody id="rosterBody"></tbody></table></div>
+        <div id="collegeRosterPanel" class="table-wrap hidden"><table class="college-roster-table"><thead><tr><th>College</th><th>Date</th><th>Activity</th><th>Assigned team</th><th></th></tr></thead><tbody id="collegeRosterBody"></tbody></table></div>
       </section>
 
       <section class="view" id="collegesView">
